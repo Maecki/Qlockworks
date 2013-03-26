@@ -6,6 +6,6 @@
  * Date : 2013-03-26
  */
 
-echo "Hello World";
+echo "Hello Qlockworks!";
 
 ?>
