@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Qbox Documentation</title>
+
+<style>
+html,body {
+	font-family:verdana,arial,sans-serif;
+	font-size:11px;
+	background-color:#CCC;
+}
+html,body,table,tr,th,td,ul,li,h1,h2,h2,h3,h4,p,pre,img {
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+h1 {
+	margin-bottom:10px;
+	padding:5px 25px;
+	background-color:#70F;
+	border-radius:10px;
+	font-size:20px;
+	color:white;
+}
+h2 {
+	margin:13px 0px;
+	border-bottom:2px solid #70F;
+	font-size:18px;
+}
+h3 {
+	margin:4px 0px;
+	border-bottom:1px solid #70F;
+	font-size:14px;
+}
+h4 {
+	padding-top:10px;
+	font-size:12px;
+}
+p {
+	padding:5px 0px;
+}
+ul {
+	padding:3px 0px 3px 20px;
+}
+ul li {
+	padding:2px 0px;
+	list-style:circle;
+}
+pre {
+	padding:10px;
+	border:1px inset #CCC;
+	background-color:#EEE;
+	font-size:10px;
+}
+a {
+	color:#70F;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+a img {
+	margin:5px;
+	padding:5px;
+	border:2px solid #AAA;
+	background-color:#EEE;
+}
+
+table {
+	margin:5px 0px;
+	border-spacing:0px;
+	border-left:1px solid #AAA;
+	border-bottom:1px solid #AAA;
+}
+table tr {
+	vertical-align:top;
+	background-color:#E5E5E5;
+}
+table tr:nth-child(2n) {
+	background-color:#EFEFEF;
+}
+table th {
+	text-align:left;
+	background-color:#CCC;
+	padding:5px 10px;
+	border-right:1px solid #AAA;
+}
+table td {
+	padding:3px 10px;
+	border-right:1px solid #AAA;
+	border-top:1px solid #AAA;
+}
+
+.Wrapper {
+	width:700px;
+	margin:0px auto;
+	padding:20px;
+	background-color:white;
+}
+
+.Footer {
+	background-color:#444;
+	color:#CCC;
+}
+.Footer a {
+	color:#CCC;
+}
+.Footer a:hover {
+	color:white;
+	text-decoration:none;
+}
+</style>
+
+<link href="qbox/qbox_raw.css" rel="stylesheet" />
+<script src="qbox/qbox_raw.js"></script>
+
+</head>
+<body>
+
+<a name="top"></a>
+<div class="Wrapper">
+
+<h1>Qbox - Dokumentation und Beispiele</h1>
+<p>
+"Qbox" ist eine Lightbox mit der einfache Texte als Parameter mitgegeben oder auch per Ajax oder Iframe nachgeladene Texte sowie Bilder dargestellt werden k&ouml;nnen.
+Diese &ouml;ffnet sich in einer neuen Ebene mittig im Browserfenster, der Hintergrund wird abgedunkelt.
+</p>
+<h2>Einstellungen</h2>
+<p>
+Verschiedene Einstellungen wie die Texte f&uuml;r nas n&auml;chste Bild bei Galerie-Ausgaben oder dem Text oder Title beim Schlie&szlig;en-Button
+k&ouml;nnen nach dem Einbinden des Scripts "gbox.js" mithilfe einer "init"-Funktion vorgenommen werden.
+</p>
+<table>
+	<tr>
+		<th>Parameter</th><th>Datentyp</th><th>Beschreibung</th>
+	</tr>
+	<tr>
+		<td>pref</td><td>String</td><td>Inhalt des Zur&uuml;ck-Buttons bei Galerie-Bilder</td>
+	</tr>
+	<tr>
+		<td>next</td><td>String</td><td>Inhalt des Weiter-Buttons bei Galerie-Bilder</td>
+	</tr>
+	<tr>
+		<td>close</td><td>String</td><td>Inhalt des Schlie&szlig;en-Buttons der Lightbox</td>
+	</tr>
+	<tr>
+		<td>close_tip</td><td>String</td><td>Tip des Schlie&szlig;en-Buttons</td>
+	</tr>
+	<tr>
+		<td>eventlistener</td><td>Bool</td><td>True oder False. Ob die Lightbox auf verschiedene Events wie onKeyUp oder onResize reagieren soll.</td>
+	</tr>
+</table>
+<pre>
+&lt;script&gt;
+qbox.init({
+  pref : "&lt;",
+  next : "&gt;",
+  close : "X",
+  close_tip : "Zum schlie&szlig;en die ESC-Taste dr&uuml;cken",
+  eventlistener : true
+});
+&lt;/script&gt;
+</pre>
+
+<br />
+<h2>Schnittstellen</h2>
+<p>
+Es gibt verschiedene Funktionen die aufgerufen werden k&ouml;nnen um diese Ebene z.B. zu Schlie&szlig;en oder zwischen den Bildern einer Galerie hin und her zu navigieren.
+</p>
+<table>
+	<tr>
+		<th>Funktion</th><th>Beschreibung</th>
+	</tr>
+	<tr>
+		<td>close</td><td>Schlie&szlig;en der Ebene</td>
+	</tr>
+	<tr>
+		<td>pref</td><td>Vorheriges Bild der Galerie zeigen, wenn m&ouml;glich</td>
+	</tr>
+	<tr>
+		<td>next</td><td>Zum n&auml;chsten Bild der Galerie wechseln, wenn m&ouml;glich</td>
+	</tr>
+</table>
+<pre>
+&lt;script&gt;
+
+// Schlie&szlig;en der Qbox
+qbox.close();
+
+// vorheriges bzw. n&auml;chsten Bild einer Galerie zeigen, wenn m&ouml;glich
+qbox.pref();
+qbox.next();
+
+&lt;/script&gt;
+</pre>
+
+<br />
+<h2>Download</h2>
+<p>
+Mit folgendem Link k&ouml;nnen die Javascript- und CSS Source-Dateien mit oder ohne Beispiele als Zip-Datei heruntergeladen werden.
+</p>
+<ul>
+	<li><a href="qbox.zip">qbox.zip</a> <small>(ca. 3kb)</small>
+	<li><a href="qbox_example.zip">qbox_example.zip + Beispiele</a> <small>(ca. 2,3mb)</small>
+</ul>
+
+<br />
+<h2>Beispiele</h2>
+<ul>
+	<li><a href="#text">Einfache Textausgabe</a></li>
+	<li><a href="#ajax">Ajax-Content</a></li>
+	<li><a href="#iframe">Iframe</a></li>
+	<li><a href="#image">Bild</a></li>
+	<li><a href="#gallery">Galerie</a></li>
+</ul>
+<br />
+
+<a name="text"></a>
+<h3>Einfache Textausgabe</h3>
+<p>
+Einfache ausgabe eines HTML-Texten, der als String-Parameter mitgegeben werden kann. Es ist vorteilhaft wenn beim onclick-Parameter des Links die Funktion mit "return" aufgerufen wird, da
+diese "false" als R&uuml;ckgabewert liefert und die Seite nicht zum Link navigiert.
+</p>
+<h4>Code</h4>
+<pre>
+&lt;a href="#" onclick="return qbox.open('Hier steht der Text')"&gt;
+  hier klicken
+&lt;/a&gt;
+</pre>
+
+<h4>Ausgabe:</h4>
+<p>
+<a href="#" onclick="return qbox.open('Hier steht der Text')">hier klicken</a>
+</p>
+<p>
+	<a href="#ajax">weiter</a> | <a href="#top">nach oben</a>
+</p>
+<br />
+
+
+<a name="ajax"></a>
+<h3>Ajax-Content</h3>
+<p>
+Wird als erster Parameter der Link selbst und als zweiter das Stichwort 'ajax' mitgegeben, wird das Ziel des Links per Ajax geladen und anschlie&szlig;end ausgegeben.
+</p>
+<h4>Code</h4>
+<pre>
+&lt;a href="data/ajax.html" onclick="return qbox.open(this,'ajax')"&gt;
+  hier klicken
+&lt;/a&gt;
+</pre>
+
+<h4>Ausgabe:</h4>
+<p>
+<a href="data/ajax.html" onclick="return qbox.open(this,'ajax')">hier klicken</a>
+</p>
+<p>
+	<a href="#text">zur&uuml;ck</a> | <a href="#iframe">weiter</a> | <a href="#top">nach oben</a>
+</p>
+<br />
+
+
+<a name="iframe"></a>
+<h3>Iframe</h3>
+<p>
+Wird wie bei Ajax als erster Parameter der Link selbst und als zweiter das Stichwort 'iframe' mitgegeben, wird eine Iframe mit der maximalen Content-H&ouml;he als Lightbox ausgegeben
+und der Link in der Iframe geladen.
+</p>
+<h4>Code</h4>
+<pre>
+&lt;a href="data/iframe.html" onclick="return qbox.open(this,'iframe')"&gt;
+  hier klicken
+&lt;/a&gt;
+</pre>
+
+<h4>Ausgabe:</h4>
+<p>
+<a href="data/iframe.html" onclick="return qbox.open(this,'iframe')">hier klicken</a>
+</p>
+<p>
+	<a href="#ajax">zur&uuml;ck</a> | <a href="#image">weiter</a> | <a href="#top">nach oben</a>
+</p>
+<br />
+
+
+<a name="image"></a>
+<h3>Bild</h3>
+<p>
+Bei Bildern muss nur der Link selbst als erster Parameter mitgegeben werden. Verweist der Link auf eine .jpg, .png oder .gif Bild-Datei wird im Content das Bild gezeigt.
+Zus&auml;tlich ist es m&ouml;glich eine Bildunterschrift hinzuzuf&uuml;gen. Dabei wird der Inhalt des "Title"-Attributes des mitgegebenen Links verwendet.
+</p>
+<h4>Code</h4>
+<pre>
+&lt;a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich"&gt;
+  &lt;img src="imgs/001_th.jpg" alt="Landschaft in &Ouml;sterreich" /&gt;
+&lt;/a&gt;
+oder
+&lt;a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich"&gt;
+  hier klicken
+&lt;/a&gt;
+</pre>
+
+<h4>Ausgabe:</h4>
+<p>
+<a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich"><img src="imgs/001_th.jpg" /></a>
+oder
+<a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich">hier klicken</a>
+</p>
+<p>
+	<a href="#iframe">zur&uuml;ck</a> | <a href="#gallery">weiter</a> | <a href="#top">nach oben</a>
+</p>
+<br />
+
+
+<a name="gallery"></a>
+<h3>Galerie</h3>
+<p>
+Bei Galerien wird wie bei der Ausgabe von Bildern nur der Link selbst als Parameter mitgegeben.
+Enth&auml;lt der Link zus&auml;tlich das Attribut "rel" werden beim &ouml;ffen des Bild in der Lightbox alle Links mit diesem Attribut und dem gleichen Wert gesucht und
+der Benutzer kann mithilfe von Buttons oder den Pfeiltasten "&lt;-" und "-&gt;" zwischen den gefundenen Bildern navigieren.
+</p>
+<h4>Code</h4>
+<pre>
+&lt;a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich" rel="gallery"&gt;
+  &lt;img src="imgs/001_th.jpg" alt="Landschaft" /&gt;
+&lt;/a&gt;
+&lt;a href="imgs/002_lo.jpg" onclick="return qbox.open(this)" title="Steing&auml;rten" rel="gallery"&gt;
+  &lt;img src="imgs/002_th.jpg" alt="Butterfly" /&gt;
+&lt;/a&gt;
+&lt;a href="imgs/003_lo.jpg" onclick="return qbox.open(this)" title="Abstrakte Kunst" rel="gallery"&gt;
+  &lt;img src="imgs/003_th.jpg" alt="Gitarre" /&gt;
+&lt;/a&gt;
+&lt;a href="imgs/004_lo.jpg" onclick="return qbox.open(this)" title="Gitarre mit Stoff ummantelt" rel="gallery"&gt;
+  &lt;img src="imgs/004_th.jpg" alt="Goldfische" /&gt;
+&lt;/a&gt;
+&lt;a href="imgs/005_lo.jpg" onclick="return qbox.open(this)" title="Flying V im Tarnfarben-Look" rel="gallery"&gt;
+  &lt;img src="imgs/005_th.jpg" alt="Sandstein" /&gt;
+&lt;/a&gt;
+</pre>
+
+<h4>Ausgabe:</h4>
+<p>
+<a href="imgs/001_lo.jpg" onclick="return qbox.open(this)" title="Landschaft in &Ouml;sterreich" rel="gallery"><img src="imgs/001_th.jpg" /></a>
+<a href="imgs/002_lo.jpg" onclick="return qbox.open(this)" title="Steing&auml;rten" rel="gallery"><img src="imgs/002_th.jpg" /></a>
+<a href="imgs/003_lo.jpg" onclick="return qbox.open(this)" title="Abstrakte Kunst" rel="gallery"><img src="imgs/003_th.jpg" /></a>
+<a href="imgs/004_lo.jpg" onclick="return qbox.open(this)" title="Gitarre mit Stoff ummantelt" rel="gallery"><img src="imgs/004_th.jpg" /></a>
+<a href="imgs/005_lo.jpg" onclick="return qbox.open(this)" title="Flying V im Tarnfarben-Look" rel="gallery"><img src="imgs/005_th.jpg" /></a>
+</p>
+
+<br />
+<p>
+	<a href="#image">zur&uuml;ck</a> | <a href="#top">nach oben</a>
+</p>
+</div>
+<footer class="Wrapper Footer">
+	<small>Author: Benjamin Hartl, 17.02.2013</small>
+	<p>
+	&copy; 2013
+	&middot;
+	<a href="http://www.qlockworks.de">Qlockworks</a>
+	&middot;
+	<a href="http://www.benjaminhartl.de">Benjamin Hartl</a>
+	&middot;
+	<a href="http://www.qlockworks.de/projekte.html">Projekte</a>
+	&middot;
+	<a href="http://www.qlockworks.de/kontakt.html">Kontakt</a>
+	&middot;
+	<a href="http://www.qlockworks.de/impressum.html">Impressum</a>
+	</p>
+</footer>
+
+</body>
+</html>

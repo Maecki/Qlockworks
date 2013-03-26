@@ -1,0 +1,87 @@
+@CHARSET "ISO-8859-1";
+
+
+.Qbox {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	background-color:rgba(35,35,65,0.7);
+}
+.Qbox .QboxWindow {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:500px;
+	padding:10px;
+	background-color:white;
+}
+.Qbox .QboxWindow #qbox-close {
+	position:absolute;
+	top:2px;
+	right:2px;
+	padding:1px 4px;
+	background-color:#EEE;
+	color:black;
+}
+.Qbox .QboxWindow #qbox-close:hover {
+	color:black;
+	background-color:#DDD;
+	text-decoration:none;
+}
+.Qbox .QboxWindow #qbox-image {
+	display:block;
+	border:0px;
+}
+.Qbox .QboxWindow #qbox-image-desc {
+	position:absolute;
+	bottom:10px;
+	left:10px;
+	padding:10px 30px;
+	background-color:rgba(0,0,0,0.4);
+	color:white;
+}
+
+.Qbox .QboxWindow .QboxNext {
+	position:absolute;
+	top:10px;
+	width:80px;
+	text-decoration:none;
+	color:#DDD;
+}
+.Qbox .QboxWindow .QboxNext:hover {
+	background-color:rgba(0,0,0,0.1);
+	color:white;
+}
+.Qbox .QboxWindow .QboxNext span {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:34px;
+	height:28px;
+	margin:-18px 0px 0px -18px;
+	border-radius:20px;
+	background-color:rgba(150,150,150,0.6);
+	text-align:center;
+	vertical-align:center;
+	font-size:24px;
+	font-family:arial;
+}
+.Qbox .QboxWindow #qox-image-pref {
+	left:10px;
+}
+.Qbox .QboxWindow #qbox-image-pref span {
+	padding:5px 2px 3px 0px;
+}
+.Qbox .QboxWindow #qbox-image-next {
+	right:10px;
+}
+.Qbox .QboxWindow #qbox-image-next span {
+	padding:5px 0px 3px 2px;
+}
+
+.Qbox .QboxWindow #qbox-iframe {
+	width:100%;
+	border:0px;
+	padding:0px;
+}
