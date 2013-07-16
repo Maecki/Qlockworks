@@ -1,0 +1,519 @@
+@CHARSET "ISO-8859-1";
+
+html,body {
+	margin:0px;
+	padding:0px;
+	background:url(../graphics/css/bg.jpg);
+	font-family:arial,sans-serif;
+	font-size:11px;
+}
+
+a {
+	color: #0C717A;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+
+h1 {
+	margin:0px 0px 5px 0px;
+	padding:7px 15px;
+	font-size:13px;
+	background-color:#333;
+	color:white;
+}
+h2 {
+	margin:0px;
+	padding:0px 0px 10px 0px;
+	font-size:16px;
+}
+h3 {
+	margin:0px;
+	padding:0px 0px 10px 0px;
+	font-size:14px;
+}
+p {
+	margin:0px;
+	padding:3px 0px;
+}
+
+img,form {
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+.Float {
+	float:left;
+}
+.Clear {
+	clear:both;
+}
+
+.Toolbar {
+	position:relative;
+	background-color:white;
+	padding:3px 10px;
+	border-bottom:2px solid #CCC;
+	word-spacing:10px;
+}
+.Toolbar a.Logout {
+	position:absolute;
+	top:3px;
+	right:10px;
+}
+
+.Navigation {
+	position:absolute;
+	top:270px;
+	left:0px;
+	width:200px;
+	min-height:700px;
+	background:url(../graphics/css/guitar_1.png) top left no-repeat;
+}
+.Navigation ul {
+	margin:130px 0px 0px 45px;
+	padding:0px;
+}
+.Navigation ul li {
+	margin:0px;
+	padding:4px 0px;
+	list-style:none;
+}
+.Navigation ul li a {
+	color:#DDD;
+	font-size:13px;
+	text-shadow:3px 2px 3px #777;
+}
+.Navigation ul li a:hover {
+	text-decoration:none;
+	color:yellow;
+}
+.Navigation ul li.Select a {
+	color:yellow;
+}
+
+.Page {
+	width:900px;
+	margin:0px 0px 0px 200px;
+	background:url(../graphics/css/shadow.png) top left repeat-y;
+	padding:0px 5px;
+}
+.Page .Header {
+	position:relative;
+	height:400px;
+	border-bottom:3px solid #666;
+}
+.Page .Header img {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+.Page .Header img#header_co {
+	display:none;
+}
+
+.Page .Content {
+	padding:10px 10px 30px 10px;
+	background-color:white;
+	color:#222;
+	overflow:hidden;
+}
+.Page .Content .ContentLeft {
+	width:600px;
+	min-height:30px;
+	float:left;
+}
+.Page .Content .Sidebar {
+	width:230px;
+	margin-left:20px;
+	padding:0px 0px 10px 20px;
+	border-left:1px dotted #888;
+	float:left;
+}
+.Page .Content .Sidebar table {
+	width:100%;
+	margin-top:7px;
+}
+.Page .Content .Sidebar .Social {
+}
+.Page .Content .Sidebar .Social a {
+	margin:2px 1px 2px 3px;
+	display:block;
+	float:left;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+}
+.Page .Content .Sidebar .Social a:hover {
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+
+.Page .Content ul.Content {
+	margin:0px;
+	padding:0px;
+}
+
+.Page .Footer {
+	border-top:3px solid #666;
+	background-color:#222;
+	padding:10px;
+	color:#AAA;
+}
+.Page .Footer a {
+	color:#AAA;
+}
+.Page .Footer a:hover {
+	color:white;
+	text-decoration:none;
+}
+.Page .Footer ul {
+	width:100px;
+	margin:2px 0px 30px 40px;
+	padding:0px;
+}
+.Page .Footer ul li {
+	margin:0px;
+	padding:2px 0px;
+	list-style:circle;
+}
+
+
+
+
+#tweets,.query {
+}
+
+.tweet_list {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.tweet_list li {
+	margin:0px;
+	padding:8px 0px 0px 0px;
+	list-style-type: none;
+}
+.tweet_list .tweet_avatar {
+	padding-right:5px;
+	float: left;
+}
+
+
+
+.FormTable {
+	width:100%;
+}
+
+.FormTable td:first-child {
+	padding-right:10px;
+}
+
+input[type=text],textarea,select {
+	width:80%;
+	margin:0px;
+	padding:2px 5px;
+	border:1px inset #CCC;
+	background-color:#EEE;
+}
+input[type=submit] {
+	margin:0px;
+	padding:2px 10px;
+	border:1px outset #333;
+	background-color:#555;
+	color:white;
+	font-weight:bold;
+	cursor:pointer;
+}
+input[type=submit]:hover {
+	background-color:#888;
+}
+
+
+
+
+
+
+a[rel=imgbox] img, a[rel=vidbox] img, ul.Gallery li.Float a img {
+	border:2px solid #DDD;
+	box-shadow:3px 3px 5px #333;
+	margin-right:10px;
+}
+
+
+
+
+/*! fancyBox v2.1.0 fancyapps.com | fancyapps.com/fancybox/#license */
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+}
+
+.fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.fancybox-skin {
+	position: relative;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+}
+
+.fancybox-opened {
+	z-index: 8030;
+}
+
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.fancybox-outer, .fancybox-inner {
+	position: relative;
+}
+
+.fancybox-inner {
+	overflow: hidden;
+}
+
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.fancybox-error {
+	color: #444;
+	font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	padding: 15px;
+	white-space: nowrap;
+}
+
+.fancybox-image, .fancybox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.fancybox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	background-image: url('../graphics/fancybox/fancybox_sprite.png');
+}
+
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -22px;
+	margin-left: -22px;
+	background-position: 0 -108px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8060;
+}
+
+#fancybox-loading div {
+	width: 44px;
+	height: 44px;
+	background: url('../graphics/fancybox/fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-close {
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+}
+
+.fancybox-nav {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	background: transparent url('blank.gif'); /* helps IE */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	z-index: 8040;
+}
+
+.fancybox-prev {
+	left: 0;
+}
+
+.fancybox-next {
+	right: 0;
+}
+
+.fancybox-nav span {
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	height: 34px;
+	margin-top: -18px;
+	cursor: pointer;
+	z-index: 8040;
+	visibility: hidden;
+}
+
+.fancybox-prev span {
+	left: 10px;
+	background-position: 0 -36px;
+}
+
+.fancybox-next span {
+	right: 10px;
+	background-position: 0 -72px;
+}
+
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+
+.fancybox-tmp {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+	visibility: hidden;
+}
+
+/* Overlay helper */
+
+.fancybox-lock {
+	overflow: hidden;
+}
+
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	background: url('../graphics/fancybox/fancybox_overlay.png');
+}
+
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+	overflow: auto;
+	overflow-y: scroll;
+}
+
+/* Title helper */
+
+.fancybox-title {
+	visibility: hidden;
+	font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	position: relative;
+	text-shadow: none;
+	z-index: 8050;
+}
+
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+
+.fancybox-title-float-wrap {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-bottom: -35px;
+	z-index: 8050;
+	text-align: center;
+}
+
+.fancybox-title-float-wrap .child {
+	display: inline-block;
+	margin-right: -100%;
+	padding: 2px 20px;
+	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
+	background: rgba(0, 0, 0, 0.8);
+	-webkit-border-radius: 15px;
+	   -moz-border-radius: 15px;
+	        border-radius: 15px;
+	text-shadow: 0 1px 2px #222;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 24px;
+	white-space: nowrap;
+}
+
+.fancybox-title-outside-wrap {
+	position: relative;
+	margin-top: 10px;
+	color: #fff;
+}
+
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+
+.fancybox-title-over-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	padding: 10px;
+	background: #000;
+	background: rgba(0, 0, 0, .8);
+}
+
+
+ul.Gallery {
+	margin:0px;
+	padding:0px;
+}
+ul.Gallery li.Float, ul.Gallery li.Clear {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+ul.Gallery li.Float a {
+	position:relative;
+	width:180px;
+	padding:10px;
+	display:block;
+}
+ul.Gallery li.Float a b {
+	position:absolute;
+	bottom:15px;
+	left:12px;
+	width:170px;
+	padding:5px;
+	background:url(../graphics/css/dark.png);
+	color:white;
+}
