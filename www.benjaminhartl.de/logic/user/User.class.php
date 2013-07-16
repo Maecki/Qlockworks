@@ -18,7 +18,7 @@ class User {
 	}
 	
 	public function login($nick,$pass){
-		if(strtolower(LOGIN_USER) == strtolower($nick) AND $pass == LOGIN_PASS){
+		if(strtolower(LOGIN_USER) == strtolower($nick) AND md5($pass) == LOGIN_PASS){
 			$this->bLog = true;
 		}
 	}

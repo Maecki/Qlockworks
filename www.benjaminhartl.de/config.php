@@ -38,7 +38,7 @@ define("HEADER_FAVICON",PATH_WEB."/favicon.png");
 define("HTACCESS","n");
 
 define("LOGIN_USER","bene");
-define("LOGIN_PASS","Ns79=89nA");
+define("LOGIN_PASS","49143e3feb55444ad6c34eca12e03117");
 
 define("MAIL_REPLY","info@benjaminhartl.de");
 

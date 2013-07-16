@@ -39,7 +39,7 @@ class Sidebar extends SkeletonSection {
 		$str = '<div class="Social">';
 		$a = array(
 			"email" => "mailto:info@benjaminhartl.de",
-			"rss" => "http://www.maecki.de/rss",
+			"rss" => "http://bene-maecki.blogspot.com/feeds/posts/default",
 			"blogger" => "http://bene-maecki.blogspot.com",
 			"waidler" => "http://www.waidler.com/benjaminhartl",
 			"youtube" => "http://www.youtube.com/DesireBene",
