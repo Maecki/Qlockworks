@@ -7,7 +7,7 @@
 <style>
 
 html,body {
-	font-size:12px;
+	font-size:13px;
 	font-family:arial,sans-serif;
 	color:white;
 }
@@ -123,6 +123,15 @@ a[href$="_lo.jpg"] img {
 }
 .Navigation a.Select {
 	border-right-color:white;
+}
+.Mfg {
+	position:fixed;
+	bottom:50px;
+	left:0px;
+	width:120px;
+	z-index:3;
+	text-align:right;
+	font-size:11px;
 }
 .Wrapper {
 	position:relative;
@@ -508,8 +517,8 @@ var scroller = {
 		var y = document.body.scrollTop || window.pageYOffset;
 		var s = "";
 		for(k in scroller.sites){
-			var top = scroller.sites[k].offsetTop+scroller.sites[k].parentNode.offsetTop;
-			if(s == "" || top-150 <= y){
+			var top = scroller.sites[k].offsetTop-100;
+			if(s == "" || top <= y){
 				s = k;
 			}
 		}
@@ -522,12 +531,11 @@ var scroller = {
 		}
 	},
 	scrollto: function(k){
-		var top = k == "start" ? 0 : (scroller.sites[k].offsetTop+scroller.sites[k].parentNode.offsetTop);
+		var top = k == "start" ? 0 : (scroller.sites[k].offsetTop+80);
 		window.scrollTo(0,top);
 		return false;
 	}
 }
-window.onload = scroller.init;
 </script>
 
 </head>
@@ -542,20 +550,27 @@ window.onload = scroller.init;
 <a href="#kontakt">Kontakt</a>
 <a href="#impressum">Impressum</a>
 </div>
+<div class="Mfg">
+Mit freudlichen Gr&uuml;&szlig;en<br />
+<a href="http://www.benjaminhartl.de" target="_blank">Benjamin Hartl</a>
+</div>
 <div class="Wrapper">
 <a name="start"></a>
 <img src="header.jpg">
 <h1>Herzlich Willkommen</h1>
-<p>Minecraft, ein vom schwedischen Programmierer Markus Persson alias "Notch" entwickeltes Computerspiel ist eines der Lieblingsspiele und um das ...
-Minecraft ist ein vom , in dem der Spieler in eine sehr große,
-zufallsgenerierte 3D-Landschaft versetzt wird. Diese Welt besteht fast vollständig aus Würfeln, die sich auf unterschiedliche Weise bearbeiten lassen.
-Minecraft wird in die Kategorie Open-World-Spiel eingeordnet und aus der Ego- oder auch der Third-Person-Perspektive gespielt.
-
+<p>Minecraft, ein vom schwedischen Programmierer Markus Persson alias "Notch" entwickeltes Computerspiel zählt zu der Kategorie Open-World-Spiel, in dem man in der Ego-Perspektive
+in einer zufallsgenerierten 3D-Landschaften bauen, jagen oder craften kann. Diese Welt besteht fast vollständig aus Würfeln, die sich auf unterschiedliche Weise bearbeiten lassen.
+So kann man seine Umwelt nach belieben verändern, Häuser und ganze Dörfer bauen und weil das mit mehreren Mitspielern noch mehr Spaß bietet, bietet Minecraft die Möglichkeit
+im Lokalen Netzwerk oder über das Internet mit mehreren Mitspielern zu spielen. Hier haben wir einen Online-Server auf dem bis zu 6 Spieler gleichzeitig in unserer Welt
+online sein können.
 
 <a name="server"></a><br /><br /><br />
 <h1>Unser Server</h1>
 
-<p><a href="http://www.4players.de" target="_blank"><img src="4players.png" style="float:right" /></a> Unser Server wird bereitgestellt von 4Player <a href="http://www.4players.de" target="_blank">www.4players.de</a>.</p>
+<p>
+	<a href="http://www.4players.de" target="_blank"><img src="4players.png" style="float:right;margin:0px 10px" /></a>
+	Zur Verf&uuml;gung steht uns ein einfacher Spieleserver, bereitgestellt von 4Player <a href="http://www.4players.de" target="_blank">www.4players.de</a> mit 6 Slots.
+</p>
 <p>Die Adresse ist:</p>
 <br /><br />
 <h3 style="text-align:center">f0x.4npserver.de:25565</h3>
@@ -609,23 +624,9 @@ closeDir($dir);
 <h1>Kontaktanfrage</h1>
 <p>Bitte f&uuml;llen Sie alle Felder des folgenden Formulars vollst&auml;ndig aus, um Ihre Kontaktanfrage zu versenden.</p>
 <br />
-<form action="" method="post">
-<table>
-	<tr><td>Betreff</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td>E-Mail Adresse</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td colspan=2><hr /></td></tr>
-	<tr><td>Vorname</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td>Nachname</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td>Geburtsdatum</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td>Wohnort</td><td><input type="text" name="firstname"></td></tr>
-	<tr><td colspan=2><hr /></td></tr>
-	<tr><td>Anmerkung</td><td><textarea name="firstname"></textarea></td></tr>
-	<tr><td colspan=2><hr /></td></tr>
-	<tr><td></td><td><label><input type="checkbox"> Ich m&ouml;chte einen Eintrag auf die Server-Whitelist beantragen</label></td></tr>
-	<tr><td colspan=2><hr /></td></tr>
-	<tr><td></td><td><input type="submit" value="Anfrage versenden"></td></tr>
-</table>
-</form>
+<div class="Box">
+<iframe src="http://www.maecki.com/mailform.php?mail-info=Minecraft&color=white" style="width:100%;height:480px"></iframe>
+</div>
 
 
 <a name="impressum"></a><br /><br /><br />
@@ -659,5 +660,9 @@ Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten du
 
 </div>
 <div id="qbox" class="Qbox" style="display:none"></div>
+
+<script>
+scroller.init();
+</script>
 </body>
 </html>
