@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+
+
+html,body {
+	font-family:Arial, Sans-Serif;
+	font-size:13px;
+	color:#555;
+}
+
+html,body,form,ul,ol,li,table,tr,th,td,h1,h2,h3,h4,p,img,input,textarea,select {
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+ul,ol {
+	padding-left:20px;
+}
+li,p {
+	padding:2px 0px;
+}
+hr {
+	margin:10px 0px;
+	padding:0px;
+	border:0px;
+	border-top:1px dotted #CCC;
+}
+h1 {
+	margin-bottom:10px;
+	border-bottom:2px solid #6D0000;
+	font-size:20px;
+	color:#222;
+}
+h2 {
+	padding-bottom:7px;
+	font-size:18px;
+	color:#222;
+}
+h3 {
+	padding-bottom:5px;
+	font-size:16px;
+	color:#444;
+}
+h4 {
+	padding-bottom:5px;
+	font-size:13px;
+	color:#444;
+}
+p {
+	padding:4px 0px;
+}
+a {
+	color:#6D0000;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
