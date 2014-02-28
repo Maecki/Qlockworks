@@ -30,7 +30,7 @@ class QwLog extends QwCaller {
 	public function isLoggedIn(){
 		return $this->getUserId() > 0;
 	}
-	public function login($user,$pass,$remind=false){
+	public function login($user,$pass){
 		if(is_numeric($user)){
 			$u = "user_id='".$user."'";
 		}else if(QwUtils::checkEmail($user)){
@@ -39,10 +39,12 @@ class QwLog extends QwCaller {
 			$u = "LOWER(CONCAT(user_firstname,' ',user_lastname))='".strtolower($user)."'";
 		}
 		$sql = QwSqlConnection::getInstance();
-		$res = $sql->query("SELECT * FROM qw_user WHERE user_password='".md5($pass)."' AND ".$u." LIMIT 1");
+		$res = $sql->query("SELECT * FROM qw_user WHERE user_password='".md5($pass)."' AND ".$u." AND user_status='".QwUser::STATUS_ACTIVE."' LIMIT 1");
 		if($obj = $res->fetch_object()){
 			$u = new QwUser();
 			$u->setDataFromObject($obj);
+			$u->setStampLast(time());
+			$u->safe();
 			$this->setUser($u);
 			$this->setUserId($u->getId());
 		}

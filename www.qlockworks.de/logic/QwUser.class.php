@@ -9,10 +9,9 @@ class QwUser extends QwCaller implements QwObject {
 	
 	const STATUS_INACTIVE = "n";
 	const STATUS_ACTIVE = "y";
-	const STATUS_CLOSED = "x";
 	
-	const GENDER_FEMALE = "f";
-	const GENDER_MALE = "m";
+	const TYPE_ADMIN = "a";
+	const TYPE_EDITOR = "e";
 	
 	public function __construct($id=0){
 		if($id > 0){
@@ -28,15 +27,13 @@ class QwUser extends QwCaller implements QwObject {
 	}
 	public function setDataFromObject($obj){
 		$this->setId($obj->user_id);
-		$this->setFirstname($obj->user_firstname);
-		$this->setLastname($obj->user_lastname);
+		$this->setName($obj->user_name);
 		$this->setPassword($obj->user_password);
-		$this->setGender($obj->user_gender);
-		$this->setBirthdate($obj->user_birthdate);
 		$this->setEmail($obj->user_email);
 		$this->setWebsite($obj->user_web);
 		$this->setDescription($obj->user_description);
 		$this->setImage($obj->user_image);
+		$this->setType($obj->user_type);
 		$this->setStatus($obj->user_status);
 		$this->setToken($obj->user_token);
 		$this->setStamp($obj->user_stamp);
@@ -50,15 +47,13 @@ class QwUser extends QwCaller implements QwObject {
 			$this->setToken("u".md5($this->getId()."O".$this->getPassword()));
 			$sql->query("INSERT INTO qw_user VALUES (
 				null,
-				'".$this->getFirstname()."',
-				'".$this->getLastname()."',
+				'".$this->getName()."',
 				'".$this->getPassword()."',
-				'".$this->getGender()."',
-				'".$this->getBirthdate()."',
 				'".$this->getEmail()."',
 				'".$this->getWebsite()."',
 				'".$this->getDescription()."',
 				'".$this->getImage()."',
+				'".$this->getType()."',
 				'".$this->getStatus()."',
 				'".$this->getToken()."',
 				'".$this->getStamp()."',
@@ -67,15 +62,13 @@ class QwUser extends QwCaller implements QwObject {
 			$this->setId($sql->getLastInsertId());
 		}else{
 			$sql->query("UPDATE qw_user SET
-				user_firstname='".$this->getFirstname()."',
-				user_lastname='".$this->getLastname()."',
+				user_name='".$this->getName()."',
 				user_password='".$this->getPassword()."',
-				user_gender='".$this->getGender()."',
-				user_birthdate='".$this->getBirthdate()."',
 				user_email='".$this->getEmail()."',
 				user_web='".$this->getWebsite()."',
 				user_description='".$this->getDescription()."',
 				user_image='".$this->getImage()."',
+				user_type='".$this->getType()."',
 				user_status='".$this->getStatus()."',
 				user_token='".$this->getToken()."',
 				user_stamp='".$this->getStamp()."',
@@ -84,8 +77,10 @@ class QwUser extends QwCaller implements QwObject {
 		}
 	}
 	public function delete(){
-		$this->setStatus(self::STATUS_CLOSED);
-		$this->safe();
+		$sql = QwSqlConnection::getInstance();
+		$sql->query("DELETE FROM qw_user WHERE user_id='".$this->getId()."'");
+		$sql->query("DELETE FROM qw_user2project WHERE u2pr_user_id='".$this->getId()."'");
+		$this->deleteImage();
 	}
 	
 	public function deleteImage(){
@@ -102,14 +97,14 @@ class QwUser extends QwCaller implements QwObject {
 		$img = new QwImageManager($ftp);
 		if($img->setSource($src)){
 			$tmp = $this->getImage();
-			$this->setImage(QwUtils::prefixZeros($this->getId(),5)."O".rand(100,999));
+			$this->setImage(substr(QwUtils::prefixZeros($this->getId(),5)."O".rand(100,999)."_".QwUtils::urlEncode($this->getName()),0,200));
 			if($img->render("user/".$this->getImage()."_kl.jpg",array(
 				"width" => 50,
 				"height" => 50
 			))){
 				$img->render("user/".$this->getImage()."_th.jpg",array(
-					"width" => 180,
-					"height" => 220
+					"width" => 220,
+					"height" => 180
 				));
 				$img->render("user/".$this->getImage()."_lo.jpg",array(
 					"max" => 800
@@ -126,17 +121,6 @@ class QwUser extends QwCaller implements QwObject {
 		return false;
 	}
 	
-	public function getAge(){
-		return QwUtils::getAge($this->getBirthdate());
-	}
-	
-	public function getGender($full=false){
-		$g = parent::getGender();
-		if($full){
-			$g = $g = self::GENDER_FEMALE ? "m&auml;nnlich" : "weiblich";
-		}
-		return $g;
-	}
 	public function getImage($end=""){
 		$img = parent::getImage();
 		if($end != ""){
@@ -147,6 +131,17 @@ class QwUser extends QwCaller implements QwObject {
 			}
 		}
 		return $img;
+	}
+	
+	
+	public function getCard(){
+		$out = '<div class="Card"><img src="'.$this->getImage("th").'" /><h3>'.$this->getName().'</h3>';
+		if($this->getWebsite() != ""){
+			$out .= '<p>'.QwUtils::getLink($this->getWebsite()).'</p>';
+		}
+		$out .= QwUtils::commentEncode($this->getDescription());
+		$out .= '</div>';
+		return $out;
 	}
 }
 ?>

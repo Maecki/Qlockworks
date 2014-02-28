@@ -40,7 +40,7 @@ abstract class QwManager extends QwCaller {
 						if($w != ""){
 							$w .= " OR ";
 						}
-						$w .= $n." ".$is." '".$v."'";
+						$w .= $n." ".$is." ".($is == "IN" ? "(".$v.")" : "'".$v."'");
 					}
 					$this->clause .= $w;
 					$i++;

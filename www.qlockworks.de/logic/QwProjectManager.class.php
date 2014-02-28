@@ -11,11 +11,24 @@ class QwProjectManager extends QwManager {
 		$this->setSort("proj_stamp_last DESC");
 	}
 	
-	public function execute($loadData=false){
+	public function execute(){
 		$from = "qw_project";
 		$this->where("proj_id","=",$this->getId());
-		$this->where("proj_status","=",$this->getStatus());
-		$this->where(array("proj_name","proj_description"),"LIKE",$this->getName());
+		if($this->isPublic()){
+			$this->where("proj_public","=","y");
+		}
+		if($this->getSearch() != ""){
+			if($this->clause != ""){
+				$this->clause .= " AND ";
+			}
+			$this->clause .= "(
+				proj_name LIKE '".$this->getSearch()."' OR
+				proj_description LIKE '".$this->getSearch()."' OR
+				proj_id IN (SELECT prta_proj_id FROM qw_project_tags WHERE prta_tag LIKE '".$this->getSearch()."')
+			)";
+		}else if($this->getTag() != ""){
+			$thiw->where("proj_id","IN","SELECT prta_proj_id FROM qw_project_tags WHERE prta_tag LIKE '".$this->getTag()."'");
+		}
 		$this->where("proj_stamp",">=",$this->getStampFrom());
 		$this->where("proj_stamp_last","<=",$this->getStampTo());
 		if(is_array($this->getUserId()) OR $this->getUserId() > 0){
@@ -23,83 +36,34 @@ class QwProjectManager extends QwManager {
 			$this->where("u2pr_user_id","=",$this->getUserId());
 			$this->clause .= " AND u2pr_proj_id=proj_id";
 		}
-		if(is_array($this->getCategoryId()) OR $this->getCategoryId() > 0){
-			$form .= ",qw_project2category";
-			$this->where("pr2c_cate_id","=",$this->getCategoryId());
-			$this->clause .= " AND pr2c_proj_id=proj_id";
-		}
 		$ids = array();
 		$sql = QwSqlConnection::getInstance();
-		$res = $sql->query("SELECT * FROM ".$from.$this->clause." ORDER BY ".$this->getSort());
+		$anz = $sql->value("SELECT COUNT(*) FROM ".$from.$this->clause);
+		$res = $sql->query("SELECT * FROM ".$from.$this->clause." ORDER BY ".$this->getSort().($this->getLimit() != "" ? " LIMIT ".$this->getLimit() : ""));
 		while($obj = $res->fetch_object()){
-			$p = $this->getObject($obj->proj_id);
-			if(!($p instanceof QwProject)){
-				$p = new QwProject();
-				$p->setDataFromObject($obj);
-				$p->setObject($p);
-				$ids[] = $p->getId();
-			}
-			if(isset($obj->pr2c_cate_id)){
-				$a = $p->getCategoryIds();
-				if(!is_array($a)){
-					$a = array();
-				}
-				$a[] = $obj->pr2c_cate_id;
-				$p->setCategoryIds($a);
-			}
+			$p = new QwProject();
+			$p->setDataFromObject($obj);
+			$this->setObject($p);
 		}
-		if(count($ids) > 0 AND $loadData){
-			$cm = new QwCategoryManager();
-			$cm->setProjectId($ids);
-			$cm->execute();
-			$ca = $cm->getObjects();
-			foreach($ca AS $c){
-				$a = $c->getProjectIds();
-				foreach($a AS $id){
-					$p = $this->getObject($id);
-					if($p instanceof QwProject){
-						$p->setCategory($c);
-						$c->setProject($p);
-					}
-				}
+		return $anz;
+	}
+	
+	public static function tagcloud(){
+		$tags = array();
+		$vals = array();
+		$sql = QwSqlConnection::getInstance();
+		$res = $sql->query("SELECT prta_tag FROM qw_project_tags ORDER BY prta_tag");
+		while($obj = $res->fetch_object()){
+			$key = strtolower(str_replace(array(" ","-","_"),"",trim($obj->prta_tag)));
+			if(!isset($vals[$key])){
+				$vals[$key] = array($obj->prta_tag,0);
 			}
-			$fm = new QwProjectFileManager();
-			$fm->setProjectId($ids);
-			$fm->execute();
-			$fa = $fm->getObjects();
-			foreach($fa AS $f){
-				$p = $this->getObject($f->getProjectId());
-				if($p instanceof QwProject){
-					$p->setFile($f);
-					$f->setProject($p);
-				}
-			}
-			$em = new QwProjectExampleManager();
-			$em->setProjectId($ids);
-			$em->execute();
-			$ea = $em->getObjects();
-			foreach($ea AS $e){
-				$p = $this->getObject($e->getProjectId());
-				if($p instanceof QwProject){
-					$p->setExample($e);
-					$e->setProject($p);
-				}
-			}
-			$um = new QwUserManager();
-			$um->setProjectId($ids);
-			$um->execute();
-			$ua = $um->getObjects();
-			foreach($ua AS $u){
-				$a = $u->getProjectIds();
-				foreach($a AS $id){
-					$p = $this->getProject($id);
-					if($p instanceof QwProject){
-						$p->setUser($u);
-						$u->setProject($p);
-					}
-				}
-			}
+			$vals[$key][1]++;
 		}
+		foreach($vals AS $a){
+			$tags[$a[0]] = $a[1];
+		}
+		return $tags;
 	}
 }
 ?>

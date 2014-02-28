@@ -31,6 +31,13 @@ final class QwSqlConnection {
 		return $this->connection->query($query);
 	}
 	
+	public function value($query){
+		$res = $this->connection->query($query);
+		if($a = $res->fetch_array()){
+			return $a[0];
+		}
+	}
+	
 	public function getLastInsertId(){
 		return $this->connection->insert_id;
 	}

@@ -12,7 +12,7 @@ define("QW_WEB","http://".$_SERVER["SERVER_NAME"]."/Qlockworks/www.qlockworks.de
 define("QW_FTP",QW_WEB."/ftp");
 
 // Ftp-Verbindung
-define("QW_FTP_HOST","localhost");
+define("QW_FTP_HOST","qlockorks.maecki.com");
 define("QW_FTP_USER","qu2ftp");
 define("QW_FTP_PASS","pass2ftp");
 

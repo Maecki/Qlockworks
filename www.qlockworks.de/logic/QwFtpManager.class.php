@@ -40,19 +40,11 @@ class QwFtpManager {
 		}
 	}
 	
-	public function delete($src){
+	public function delete($file){
 		if(QwUtils::isLocal()){
-			return @unlink("ftp/".$src);
+			return @unlink("ftp/".$file);
 		}else{
-			if($this->isdir($src)){
-				$a = $this->dir($src);
-				foreach($a AS $f){
-					$this->delete($src."/".$f);
-				}
-				return @ftp_rmdir($this->connect,$src);
-			}else{
-				return @ftp_delete($this->connect,$src);
-			}
+			return @ftp_delete($this->connect,$file);
 		}
 	}
 	
@@ -60,37 +52,39 @@ class QwFtpManager {
 		if(QwUtils::isLocal()){
 			return @mkdir("ftp/".$file);
 		}else{
-			@ftp_mkdir($this->connect,$file);
+			return @ftp_mkdir($this->connect,$file);
 		}
 	}
-	
+	public function rmdir($path){
+		$a = $this->dir($path);
+		foreach($a AS $f){
+			$this->delete($path."/".$f);
+		}
+		if(QwUtils::isLocal()){
+			return @rmdir($path);
+		}else{
+			return @ftp_rmdir($this->connect,$path);
+		}
+	}
 	public function dir($dir){
 		$a = array();
-		$l = ftp_nlist($this->connect,$dir);
-		foreach($l AS $f){
-			if($f != "." AND $f != ".."){
-				$a[] = $f;
+		if(QwUtils::isLocal()){
+			$h = opendir("ftp/".$dir);
+			while($f = readdir($h)){
+				if($f != "." AND $f != ".."){
+					$a[] = $f;
+				}
 			}
-		}
-		return $a;
-	}
-	public function isdir($dir){
-		if(preg_match("/^(.*)\/([^\/]+)$/",$dir,$a)){
-			$dir = $a[1];
-			$file = $a[2];
-			if($result = ftp_rawlist($this->connect,$dir)){
-				foreach($result AS $row){
-					while(preg_match("/  /",$row)){
-						$row = str_replace("  "," ",$row);
-					}
-					$a = explode(" ",$row);
-					if($a[8] == $file){
-						return preg_match("/^d/",$row);
-					}
+			closedir($h);
+		}else{
+			$l = ftp_nlist($this->connect,$dir);
+			foreach($l AS $f){
+				if($f != "." AND $f != ".."){
+					$a[] = $f;
 				}
 			}
 		}
-		return false;
+		return $a;
 	}
 }
 ?>

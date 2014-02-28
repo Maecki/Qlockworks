@@ -7,51 +7,58 @@
  */
 class QwSkeleton extends QwCaller {
 	
-	const NONE = -1;
-	const HOME = 0;
-	const PROJECTS = 1;
-	const TEAM = 2;
-	const CONTACT = 3;
-	const IMPRINT = 4;
-	
 	public function __construct($title=""){
 		$this->setTitle($title);
-		$this->setDescription("Das Qlockworks-Entwicklerteam.");
-		$this->setSelect(self::NONE);
+		$this->setDescription("Qlockworks Entwickler-Club. Der Online-Blog mit Tutorials und Beispielen f&uuml;r Entwicklung und Programmierung mit verschiedenen Technicken. Verschiedene Dokumentationen f&uuml;r Projekte, Objektorientierung, Datenbankstrukturen und vieles mehr.");
+		$this->setImage(QW_WEB."/style/small.png");
+		$this->setLink($_SERVER["REQUEST_URI"]);
 	}
 	
 	public function begin(){
 		echo '<!DOCTYPE html>
 <html>
 	<head>
-		<title>'.$this->getTitle().($this->getTitle() != "" ? " | " : "").'Qlockworks | Informatiker-Club Entwicklungs-Blog</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="language" content="de" />
+		<meta name="publisher" content="www.qlockworks.de" />
+		<meta name="author" content="Qlockworks" />
+		<title>'.$this->getTitle().($this->getTitle() != "" ? " | " : "").'Qlockworks | Blog, Tutorials und Beispiele f&uuml;r Entwicklung und Programmierung</title>
 		<meta name="description" content="'.$this->getDescription().'" />
-		<meta name="keywords" content="Qlockworks,Entwicker" />
-		<link rel="stylesheet" href="style/style.css" />
-		<link href="favicon.ico" rel="Shortcut Icon" />
-		<script src="style/script.js"></script>
+		<meta name="keywords" content="Qlockworks,Entwicker,Programmierung,Blog,'.($this->getKeywords() != "" ? $this->getKeywords() : "HTML,CSS,JavaScript,PHP,Python,Perl,C/C++,Java").'" />
+		<meta itemprop="image" content="'.$this->getImage().'" />
+		<meta property="og:image" content="'.$this->getImage().'" />
+		<link rel="image_src" href="'.$this->getImage().'" />
+		<meta name="revisit-afet" content="4 days" />
+		<meta name="robots" content="all">
+		<link rel="coanonical" href="'.$this->getLink().'" />
+		<link rel="stylesheet" href="'.QW_WEB.'/style/content.css" />
+		<link rel="stylesheet" href="'.QW_WEB.'/style/style.css" />
+		<link href="'.QW_WEB.'/favicon.ico" rel="Shortcut Icon" />
+		<script src="'.QW_WEB.'/style/script.js"></script>';
+		if($this->getTinymce()){
+			echo '
+		<script src="'.QW_WEB.'/tinymce/tinymce.min.js"></script>';
+		}
+		echo '
 	</head>
 	<body>
-		<div id="fb-root"></div>
 		<div class="Shadow"></div>
 		<div id="cws">
 			<header class="Header">
-				<a href="#" class="Logo"></a>
-				<form action="project.php" method="get">
-					<input type="text" name="text" />
+				<a href="'.QW_WEB.'" class="Logo"></a>
+				<form action="'.QW_WEB.'/index.php" method="get">
+					<input type="text" name="search" />
 					<input type="submit" value="suchen" />
 				</form>
 				<nav class="Navigation">
-					<a href="#">Start</a>
-					<a href="#">Philosophie</a>
-					<a href="#">Kontakt</a>
+					<a href="'.QW_WEB.'">Blog</a>
+					<a href="'.QW_WEB.'/philosophie.php">Philosophie</a>
+					<a href="'.QW_WEB.'/contact.php">Kontakt</a>
 					<div class="Clear"></div>
 				</nav>
 			</header>
 			<div class="Content">
-				<section class="Float Main">
-					<p><a href="">Qlockworks</a> &raquo; <a href="">Archiv</a></p>
-					<br />';
+				<section class="Float Main">';
 	}
 	
 	public function end(){
@@ -62,12 +69,11 @@ class QwSkeleton extends QwCaller {
 		if($log->isLoggedIn()){
 			echo '
 					<aside>
-						<h1>Hallo '.$log->getUser()->getFirstname().'</h1>
-						<a href="'.QW_WEB.'/user.php">Mein Profil</a>
-						|
-						<a href="'.QW_WEB.'/user_setup.php">Einstellungen</a>
-						|
-						<a href="'.QW_WEB.'/logout.php">Logout</a>
+						<h1>Hallo '.$log->getUser()->getName().'</h1>
+						<ul>
+							<li><a href="'.QW_WEB.'/user.php">Profil / Einstellungen</a></li>
+							<li><a href="'.QW_WEB.'/edit.php">Neuen Eintrag erstellen</a></li>
+							<li><a href="'.QW_WEB.'/logout.php">Abmelden</a></li>
 					</aside>';
 		}
 		echo '
@@ -85,40 +91,40 @@ class QwSkeleton extends QwCaller {
 						</table>
 					</aside>
 					<aside>
-						<h1>Aktuelles</h1>
-						<a href="#" class="Row">
-							<img src="style/small.png" width=50 /><strong>Neus Projekt zum neuen Jahr 2014</strong><br />
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.
-							... mehr
-						</a>
-						<hr />
-						<a href="#" class="Row">
-							<img src="style/small.png" width=50 /><strong>Tic Tac Toe</strong><br />
-							Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-							... mehr
-						</a>
+						<h1>Aktuelles</h1>';
+		$i = 0;
+		$pm = new QwProjectManager();
+		$pm->setLimit(2);
+		$pm->execute();
+		$pa = $pm->getObjects();
+		foreach($pa AS $p){
+			$i++;
+			if($i == 2){
+				echo '<hr />';
+			}
+			echo '<a href="'.$p->getLink().'" class="Row"><img src="'.$p->getImage("kl").'" width=50 /><strong>'.$p->getName().'</strong><br />'.$p->getDescription().' <em>... mehr</em></a>';
+		}
+		echo '
 					</aside>
 					<aside>
 						<h1>Tag-Cloud</h1>
-						<div class="Tagcloud">
-						<a href="" style="font-size:14px">Android</a>
-						<a href="" style="font-size:10px">C/C++</a>
-						<a href="" style="font-size:10px">C#</a>
-						<a href="" style="font-size:13px">Chrome</a>
-						<a href="" style="font-size:13px">Cloud</a>
-						<a href="" style="font-size:15px">CSS</a>
-						<a href="" style="font-size:12px">Firefox</a>
-						<a href="" style="font-size:16px">HTML</a>
-						<a href="" style="font-size:11px">Java</a>
-						<a href="" style="font-size:16px">JavaScript</a>
-						<a href="" style="font-size:15px">MySQL</a>
-						<a href="" style="font-size:8px">MsSQL</a>
-						<a href="" style="font-size:18px">PHP</a>
-						<a href="" style="font-size:12px">Python</a>
-						<a href="" style="font-size:12px">Perl</a>
-						<a href="" style="font-size:8px">Visual Basic</a>
-						<a href="" style="font-size:11px">Windows 8</a>
-						<a href="" style="font-size:10px">Windows Phone</a>
+						<div class="Tagcloud">';
+		$a = QwProjectManager::tagcloud();
+		$i = 0;
+		foreach($a AS $tag=>$anz){
+			$i++;
+			if($i > 1){
+				echo " ";
+			}
+			$size = 8;
+			foreach(array(3,5,8,12,17,22,22,28,35,42,50,60) AS $min){
+				if($anz > $min){
+					$size++;
+				}
+			}
+			echo '<a href="'.QW_WEB.'/index.php?tag='.$tag.'" style="font-size:'.$size.'px">'.$tag.'</a>';
+		}
+		echo '
 						</div>
 					</aside>
 					<aside class="Twitter">
@@ -139,14 +145,14 @@ class QwSkeleton extends QwCaller {
 					<li>&copy; '.date("Y").' <a href="'.QW_WEB.'">Qlockworks</a></li>
 				</ul>
 				<ul class="Float">
-					<li><a href="'.QW_WEB.'/categories.php">Philosophie</a></li>
-					<li><a href="'.QW_WEB.'/project.php">Links &amp; Partnerseiten</a></li>
+					<li><a href="'.QW_WEB.'/phisolophie.php">Philosophie</a></li>
+					<li><a href="'.QW_WEB.'/partner.php">Links &amp; Partnerseiten</a></li>
 				</ul>
-				<ul class="Float">
-					<li><a href="'.QW_WEB.'/projekte.php?status=y">Archiv</a></li>';
-		for($i=date("Y");$i>=2013;$i--){
-			echo '
-					<li><a href="'.QW_WEB.'/projekte.php?status=y&year='.$i.'">'.$i.'</a></li>';
+				<ul class="Float">';
+		$y = date("Y");
+		echo '<li><a href="'.QW_WEB.'/index.php?year='.$y.'">Archiv</a></li>';
+		for($i=$y;$i>=2013;$i--){
+			echo '<li><a href="'.QW_WEB.'/index.php?year='.$i.'">'.$i.'</a></li>';
 		}
 		echo '
 				</ul>
@@ -161,10 +167,50 @@ class QwSkeleton extends QwCaller {
 			</footer>
 		</div>
 		<script>
-			qw.init();
+			qw.init();';
+		if($this->getTinymce()){
+			echo '
+			tinymce.init({
+				selector: ".Html",
+				relative_urls: false,
+				remove_script_host: false,
+				paste_as_text: true,
+				content_css : "'.QW_WEB.'/style/content.css",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image"
+			});';
+		}
+		echo '
 		</script>
 	</body>
 </html>';
+	}
+	
+	public static function nav($link,$anz,$limit,$select){
+		$str = '<div class="Navigation">';
+		$j = 0;
+		for($i=0;$i<=$anz;$i+=$limit){
+			$j++;
+			if($i == $select){
+				$str .= '<a href="'.$link.$i.'">'.$j.'</a>';
+			}
+		}
+		$str .= '</div>';
+		return $str;
+	}
+	
+	public static function getBox($str){
+		return '<div class="Box">'.$str.'</div>';
+	}
+	public static function getBoxOk($str){
+		return '<div class="Box BoxOk">'.$str.'</div>';
+	}
+	public static function getBoxError($str){
+		return '<div class="Box BoxError">'.$str.'</div>';
 	}
 }
 ?>

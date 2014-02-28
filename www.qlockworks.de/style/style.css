@@ -1,57 +1,9 @@
-html {
-}
+@CHARSET "ISO-8859-1";
+
 html,body {
 	background:#AAA url(bg.jpg) top left repeat;
-	font-family:Arial, Sans-Serif;
-	font-size:13px;
-	color:#555;
 }
 
-html,body,form,ul,ol,li,table,tr,th,td,h1,h2,h3,h4,p,img,input,textarea,select {
-	margin:0px;
-	padding:0px;
-	border:0px;
-}
-ul,ol {
-	padding-left:20px;
-}
-li,p {
-	padding:2px 0px;
-}
-hr {
-	margin:10px 0px;
-	padding:0px;
-	border:0px;
-	border-top:1px dotted #CCC;
-}
-h1 {
-	margin-bottom:10px;
-	border-bottom:2px solid #6D0000;
-	font-size:20px;
-	color:#222;
-}
-h2 {
-	padding-bottom:7px;
-	font-size:18px;
-	color:#222;
-}
-h3 {
-	padding-bottom:5px;
-	font-size:16px;
-	color:#444;
-}
-h4 {
-	padding-bottom:5px;
-	font-size:13px;
-	color:#444;
-}
-a {
-	color:#6D0000;
-	text-decoration:none;
-}
-a:hover {
-	text-decoration:underline;
-}
 input[type=text], input[type=email], input[type=password], textarea, select {
 	width:90%;
 	padding:3px 10px;
@@ -73,15 +25,22 @@ input[type=submit] {
 textarea {
 	height:50px;
 }
+select {
+	width:auto;
+}
 form table {
 	width:100%;
 	border-spacing:0px;
+	border:1px solid #CCC;
+	border-radius:20px;
+	background-color:#EEE;
+	padding:15px;
 }
 form table tr {
 	vertical-align:top;
 }
 form table tr td {
-	padding:2px 4px;
+	padding:4px 0px;
 }
 
 table.Zebra {
@@ -124,20 +83,60 @@ table.Zebra tr:nth-child(2n) {
 	background-color:#A00;
 }
 
-.Row {
+.Row, .Preview {
 	position:relative;
 	display:block;
 	color:#444;
 	padding-left:60px;
+	min-height:50px;
+	overflow:hidden;
 }
-.Row img {
+.Row img, .Preview img {
 	position:absolute;
 	top:0px;
 	left:0px;
 }
-.Row:hover {
+.Row:hover, .Preview:hover {
 	text-decoration:none;
+	color:#6D0000;
 }
+.Row {
+	max-height:65px;
+}
+.Row em {
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	padding:0px 3px;
+	background-color:#EEE;
+}
+
+.Preview {
+	padding-left:230px;
+	min-height:180px;
+}
+.Preview strong {
+	display:block;
+	border-bottom:1px solid #6D0000;
+	margin-top:10px;
+	margin-bottom:10px;
+	font-size:15px;
+}
+
+
+.Card {
+	float:right;
+	width:220px;
+	min-height:320px;
+	margin:0px 0px 10px 10px;
+	padding:10px;
+	border:1px solid #CCC;
+	background-color:#EEE;
+}
+.Card h3 {
+	padding:0px;
+}
+
 
 .Shadow {
 	position:fixed;
@@ -221,6 +220,7 @@ table.Zebra tr:nth-child(2n) {
 #cws .Content .Main {
 	width:620px;
 	margin-left:25px;
+	padding:20px 0px;
 }
 #cws .Content .Sidebar {
 	width:250px;
@@ -310,6 +310,14 @@ table.Zebra tr:nth-child(2n) {
 	background-position:-128px -32px;
 }
 
+.Loginform {
+	background-color:#EEE;
+	border:1px solid #CCC;
+	padding:20px;
+	border-radius:10px;
+	margin-bottom:20px;
+	margin:0px auto;
+}
 
 
 .Tagcloud {
@@ -318,4 +326,14 @@ table.Zebra tr:nth-child(2n) {
 }
 .Tagcloud a {
 	word-spacing:0px;
+}
+
+
+#cws .mce-tinymce {
+	margin:-1px;
+}
+
+
+.Author {
+	height:auto;
 }
