@@ -18,17 +18,14 @@ $log = QwLog::getInstance();
 $out = "";
 
 if(isset($_GET["id"])){
-	$autor = '<div class="Author"><img src="http://localhost/Qlockworks/www.qlockworks.de/ftp/user/00001O258_benjamin-hartl_th.jpg" alt="" style="undefined" width="180" height="220">
-<h4>Benjamin Hartl</h4>
-<a href="">www.benjaminhartl.de</a><br>
-  <br>
-Fachinformatiker im Bereich der Anwendungsentwicklung, Webdesign, Leiter der Entwicklungsabteilung bei den BWmedien GmbH<br>
-www.bwmedien.biz
-</div>';
 	$p = new QwProject($_GET["id"]);
 	if($p->getId() > 0 AND ($p->getPublic() OR $log->isLoggedIn())){
 		$p->click();
-		$out .= '<table style="width:100%"><tr><td>erstellt am '.QwUtils::toGermanDate($p->getStamp()).' | '.$p->getClicks().' Klicks</td><td style="text-align:right">'.QwUtils::share($p->getLink(),$p->getName(),$p->getDescription(),$p->getImage("lo")).'</td></tr></table>';
+		$out .= '<table style="width:100%"><tr><td>erstellt am '.QwUtils::toGermanDate($p->getStamp()).' | '.$p->getClicks().' Klicks';
+		if($log->isLoggedIn() AND $p->checkPermission()){
+			$out .= ' | <a href="'.QW_WEB.'/edit.php?id='.$p->getId().'">bearbeiten</a>';
+		}
+		$out .= '</td><td style="text-align:right">'.QwUtils::share($p->getLink(),$p->getName(),$p->getDescription(),$p->getImage("lo")).'</td></tr></table>';
 		$out .= '<hr /><br /><h1>'.$p->getName().'</h1>';
 		$out .= $p->getText();
 		
@@ -65,22 +62,40 @@ www.bwmedien.biz
 		exit;
 	}
 }else{
-	if(!isset($_GET["start"])){
-		$_GET["start"] = 0;
-	}
-	if(!isset($_GET["tag"])){
-		$_GET["tag"] = "";
-	}
-	if(!isset($_GET["search"])){
-		$_GET["search"] = "";
-	}
-	if(!isset($_GET["year"])){
-		$_GET["year"] = "";
-	}
 	$pm = new QwProjectManager();
 	if(!$log->isLoggedIn()){
 		$pm->setPublic(true);
 	}
+	$head = "Blog";
+	if(isset($_GET["tag"])){
+		if($_GET["tag"] != ""){
+			$pm->setTag($_GET["tag"]);
+			$head .= ' &raquo; '.$_GET["tag"];
+		}
+	}else{
+		$_GET["tag"] = "";
+	}
+	if(isset($_GET["search"])){
+		if($_GET["search"] != ""){
+			$pm->setSearch("%".$_GET["search"]."%");
+			$head .= ' &raquo; '.$_GET["search"];
+		}
+	}else{
+		$_GET["search"] = "";
+	}
+	if(isset($_GET["year"])){
+		if($_GET["year"] != ""){
+			$pm->setStampFrom(mktime(0,0,0,0,0,$_GET["year"]));
+			$pm->setStampTo(mktime(0,0,0,0,0,$_GET["year"]+1)-1);
+			$head .= ' &raquo; Archiv '.$_GET["year"];
+		}
+	}else{
+		$_GET["year"] = "";
+	}
+	if(!isset($_GET["start"])){
+		$_GET["start"] = 0;
+	}
+	$out .= '<h1>'.$head.'</h1>';
 	$pm->setLimit($_GET["start"].",20");
 	$anz = $pm->execute(true);
 	$pa = $pm->getObjects();

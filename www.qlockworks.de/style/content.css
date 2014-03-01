@@ -13,13 +13,13 @@ html,body,form,ul,ol,li,table,tr,th,td,h1,h2,h3,h4,p,img,input,textarea,select {
 	border:0px;
 }
 ul,ol {
-	padding-left:20px;
+	padding:4px 0px 4px 20px;
 }
 li,p {
 	padding:2px 0px;
 }
 hr {
-	margin:10px 0px;
+	margin:15px 0px;
 	padding:0px;
 	border:0px;
 	border-top:1px dotted #CCC;
@@ -54,4 +54,37 @@ a {
 }
 a:hover {
 	text-decoration:underline;
+}
+
+
+blockquote {
+	position:relative;
+	margin:5px;
+	border:1px solid #CCC;
+	padding:15px 20px;
+}
+blockquote:before, blockquote:after {
+	position:absolute;
+	background-color:white;
+	font-size:20px;
+	padding:0px 5px;
+	height:14px;
+}
+blockquote:before {
+	top:-8px;
+	left:2px;
+	content:"\201C";
+}
+blockquote:after {
+	bottom:-8px;
+	right:2px;
+	content:"\201D";
+}
+blockquote em {
+	position:absolute;
+	bottom:-6px;
+	right:25px;
+	padding:0px 5px;
+	background-color:white;
+	font-size:10px;
 }

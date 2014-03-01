@@ -16,5 +16,11 @@ var qw = {
 				a[i].href = "mailto:"+a[i].innerHTML;
 			}
 		}
+	},
+	
+	share : function(url){
+		var wnd = window.open(url, "qlockworks-share", "width=500,height=350,left=100,top=200");
+		wnd.focus();
+		return false;
 	}
 }

@@ -216,8 +216,15 @@ final class QwUtils {
 	}
 	
 	
-	public static function share($link,$name,$desc,$image){
-		return "teilen auf ";
+	public static function share($url,$name,$desc,$image){
+		$url = urlencode($url);
+		$name = urlencode($name);
+		$desc = urlencode($desc);
+		$image = urlencode($image);
+		$fb = '<a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]='.$url.'&p[images][0]='.$image.'&p[title]='.$name.'&p[summary]='.$desc.'" onclick="return qw.share(this.href)" class="Share Share_facebook" title="Facebook"></a>';
+		$tw = '<a href="https://twitter.com/share?text='.$name.'&url='.$url.'" class="Share Share_twitter" onclick="return qw.share(this.href)" title="Twitter"></a>';
+		$gp = '<a href="https://plus.google.com/share?url='.$url.'" onclick="return qw.share(this.href)" class="Share Share_google" title="Google+"></a>';
+		return "teilen auf ".$fb." ".$tw." ".$gp;
 	}
 }
 ?>

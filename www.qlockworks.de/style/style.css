@@ -334,6 +334,14 @@ table.Zebra tr:nth-child(2n) {
 }
 
 
-.Author {
-	height:auto;
+.Share {
+	width:16px;
+	height:16px;
+	display:inline-block;
+	margin-left:4px;
+	background:url(share.png) top left no-repeat;
+	vertical-align: text-bottom;
 }
+.Share_facebook {background-position:0px 0px}
+.Share_twitter {background-position:-16px 0px}
+.Share_google {background-position:-32px 0px}

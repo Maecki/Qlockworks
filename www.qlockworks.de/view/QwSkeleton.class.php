@@ -145,7 +145,7 @@ class QwSkeleton extends QwCaller {
 					<li>&copy; '.date("Y").' <a href="'.QW_WEB.'">Qlockworks</a></li>
 				</ul>
 				<ul class="Float">
-					<li><a href="'.QW_WEB.'/phisolophie.php">Philosophie</a></li>
+					<li><a href="'.QW_WEB.'/philosophie.php">Philosophie</a></li>
 					<li><a href="'.QW_WEB.'/partner.php">Links &amp; Partnerseiten</a></li>
 				</ul>
 				<ul class="Float">';

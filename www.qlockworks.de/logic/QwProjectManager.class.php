@@ -20,6 +20,8 @@ class QwProjectManager extends QwManager {
 		if($this->getSearch() != ""){
 			if($this->clause != ""){
 				$this->clause .= " AND ";
+			}else{
+				$this->clause .= " WHERE ";
 			}
 			$this->clause .= "(
 				proj_name LIKE '".$this->getSearch()."' OR
@@ -27,10 +29,10 @@ class QwProjectManager extends QwManager {
 				proj_id IN (SELECT prta_proj_id FROM qw_project_tags WHERE prta_tag LIKE '".$this->getSearch()."')
 			)";
 		}else if($this->getTag() != ""){
-			$thiw->where("proj_id","IN","SELECT prta_proj_id FROM qw_project_tags WHERE prta_tag LIKE '".$this->getTag()."'");
+			$this->where("proj_id","IN","SELECT prta_proj_id FROM qw_project_tags WHERE prta_tag LIKE '".$this->getTag()."'");
 		}
 		$this->where("proj_stamp",">=",$this->getStampFrom());
-		$this->where("proj_stamp_last","<=",$this->getStampTo());
+		$this->where("proj_stamp","<=",$this->getStampTo());
 		if(is_array($this->getUserId()) OR $this->getUserId() > 0){
 			$from .= ",qw_user2project";
 			$this->where("u2pr_user_id","=",$this->getUserId());
