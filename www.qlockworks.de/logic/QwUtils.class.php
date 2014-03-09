@@ -13,6 +13,7 @@ final class QwUtils {
 		}else{
 			$val = htmlentities($val,ENT_QUOTES);
 		}
+		$val = stripslashes($val);
 		return $val;
 	}
 	

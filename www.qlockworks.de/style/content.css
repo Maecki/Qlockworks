@@ -57,6 +57,25 @@ a:hover {
 }
 
 
+pre {
+	border:1px solid black;
+	background-color:#333;
+	color:white;
+	padding:10px 10px 10px 35px;
+}
+pre .Num {
+	position:absolute;
+	margin-left:-36px;
+	padding-right:3px;
+	width:24px;
+	height:14px;
+	text-align:right;
+	border-right:1px solid #CCC;
+	display:block;
+	color:#CCC;
+	font-size:10px;
+}
+
 blockquote {
 	position:relative;
 	margin:5px;

@@ -30,6 +30,7 @@ class QwSkeleton extends QwCaller {
 		<link rel="image_src" href="'.$this->getImage().'" />
 		<meta name="revisit-afet" content="4 days" />
 		<meta name="robots" content="all">
+		<link href="http://www.maecki.com/data/icons/icon.png" rel="shortcut icon" type="image/png" />
 		<link rel="coanonical" href="'.$this->getLink().'" />
 		<link rel="stylesheet" href="'.QW_WEB.'/style/content.css" />
 		<link rel="stylesheet" href="'.QW_WEB.'/style/style.css" />

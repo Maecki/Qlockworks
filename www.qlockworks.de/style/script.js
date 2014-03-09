@@ -16,6 +16,18 @@ var qw = {
 				a[i].href = "mailto:"+a[i].innerHTML;
 			}
 		}
+		
+		var a = document.getElementsByTagName("pre");
+		for(var i=0;i<a.length;i++){
+			if(!a[i].getAttribute("data-code")){
+				var rows = a[i].innerHTML.split("<br>");
+				a[i].innerHTML = "";
+				for(var j=0;j<rows.length;j++){
+					a[i].innerHTML += '<span class="Num">'+(j+1)+'</span>'+rows[j]+"<br>";
+				}
+				a[i].setAttribute("data-code","true");
+			}
+		}
 	},
 	
 	share : function(url){

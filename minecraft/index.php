@@ -2,7 +2,20 @@
 <html>
 <head>
 
-<title>F0X-Minecraft</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="language" content="de" />
+<meta name="publisher" content="www.qlockworks.de" />
+<meta name="author" content="Qlockworks" />
+
+<title>F0X-Minecraft | Qlockworks</title>
+<meta name="description" content="Herzlich Willkommen auf dem Online-Minecraft Server von Qlockworks. Dieser private Server f&uuml;r das Kultspiel Minecraft wird bei 4npserver mit 6 Slots gehostet." />
+<meta name="keywords" content="Qlockworks,Minecraft,Maecki.com,Benjamin Hartl,4nplayers,Online-Server,Spiele-Server" />
+<meta itemprop="image" content="header.jpg" />
+<meta property="og:image" content="header.jpg" />
+<link rel="image_src" href="header.jpg" />
+<meta name="revisit-afet" content="4 days" />
+<meta name="robots" content="all">
+<link href="http://www.qlockworks.de/favicon.ico" rel="Shortcut Icon">
 
 <style>
 
