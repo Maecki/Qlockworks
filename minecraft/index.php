@@ -155,6 +155,16 @@ a[href$="_lo.jpg"] img {
 	z-index:2;
 }
 
+.Partner {
+	width:200px;
+	height:200px;
+	margin:5px 10px 5px 0px;
+	float:left;
+	display:block;
+}
+.Partner:nth-child(3n) {
+	margin-right:0px;
+}
 
 .Qbox {
 	position:fixed;
@@ -378,7 +388,7 @@ var qbox = {
 					}
 					title += value.title;
 				}
-				value = '<img src="'+value.href+'" id="qbox-image" />'+((title != "") ? '<div id="qbox-image-desc">'+title+'</div>' : "")+rel;
+				value = '<img src="'+value.href+'" id="qbox-image" style="display:none" /><div id="qbox-image-wait" style="padding:50px 0px;text-align:center;color:black">warte ...</div>'+((title != "") ? '<div id="qbox-image-desc">'+title+'</div>' : "")+rel;
 				cb = function(){
 					document.getElementById("qbox-image").onload = qbox.imageinit;
 				}
@@ -455,12 +465,13 @@ var qbox = {
 		return false;
 	},
 	imageinit : function(){
+		document.getElementById("qbox-image-wait").style.display = "none";
 		var img = document.getElementById("qbox-image");
+		img.style.display = "block";
 		var mw = window.innerWidth-60;
 		var mh = window.innerHeight-60;
 		var iw = img.offsetWidth;
 		var ih = img.offsetHeight;
-		
 		if(iw > mw){
 			ih = mw / iw * ih;
 			iw = mw;
@@ -561,6 +572,7 @@ var scroller = {
 <a href="#bilder">Bilder</a>
 <a href="#regeln">Regeln</a>
 <a href="#kontakt">Kontakt</a>
+<a href="#links">Links</a>
 <a href="#impressum">Impressum</a>
 </div>
 <div class="Mfg">
@@ -571,11 +583,11 @@ Mit freudlichen Gr&uuml;&szlig;en<br />
 <a name="start"></a>
 <img src="header.jpg">
 <h1>Herzlich Willkommen</h1>
-<p>Minecraft, ein vom schwedischen Programmierer Markus Persson alias "Notch" entwickeltes Computerspiel zählt zu der Kategorie Open-World-Spiel, in dem man in der Ego-Perspektive
-in einer zufallsgenerierten 3D-Landschaften bauen, jagen oder craften kann. Diese Welt besteht fast vollständig aus Würfeln, die sich auf unterschiedliche Weise bearbeiten lassen.
-So kann man seine Umwelt nach belieben verändern, Häuser und ganze Dörfer bauen und weil das mit mehreren Mitspielern noch mehr Spaß bietet, bietet Minecraft die Möglichkeit
-im Lokalen Netzwerk oder über das Internet mit mehreren Mitspielern zu spielen. Hier haben wir einen Online-Server auf dem bis zu 6 Spieler gleichzeitig in unserer Welt
-online sein können.
+<p>Minecraft, ein vom schwedischen Programmierer Markus Persson alias "Notch" entwickeltes Computerspiel z&auml;hlt zu der Kategorie Open-World-Spiel, in dem man in der Ego-Perspektive
+in einer zufallsgenerierten 3D-Landschaften bauen, jagen oder craften kann. Diese Welt besteht fast vollst&auml;ndig aus W&uuml;rfeln, die sich auf unterschiedliche Weise bearbeiten lassen.
+So kann man seine Umwelt nach belieben ver&auml;ndern, H&auml;user und ganze D&ouml;rfer bauen und weil das mit mehreren Mitspielern noch mehr Spa&szlig; bietet, bietet Minecraft die M&ouml;glichkeit
+im Lokalen Netzwerk oder &uuml;ber das Internet mit mehreren Mitspielern zu spielen. Hier haben wir einen Server auf dem bis zu 6 Spieler gleichzeitig in unserer Welt
+online sein k&ouml;nnen.
 
 <a name="server"></a><br /><br /><br />
 <h1>Unser Server</h1>
@@ -614,20 +626,20 @@ closeDir($dir);
 <h1>Regeln</h1>
 <p>Um Konflikte mit anderen Spielern zu vermeiden und eine harmonievolle Spielungebung zu gew&auml;hren ist es notwendig, folgende Regeln zu beachten:</p>
 <ol>
-	<li>Jegliche Provokationen, Beleidigungen und rassistische Äußerungen sind nicht erwünscht.</li>
-	<li>Anweisungen des Teams (Moderatoren, Admins, Bürgermeister) ist folge zu leisten.</li>
-	<li>Das Einsperren, Einmauern oder Ähnliches ist verboten.</li>
-	<li>Das Griefen ist bei uns gänzlich unerwünscht.</li>
-	<li>Die Tiere von anderen Mitspielern dürfen ohne Erlaubnis des Besitzers weder geschoren, gemolken noch getötet werden.</li>
+	<li>Jegliche Provokationen, Beleidigungen und rassistische &Auml;u&szlig;erungen sind nicht erw&uuml;nscht.</li>
+	<li>Anweisungen des Teams (Moderatoren, Admins, B&uuml;rgermeister) ist folge zu leisten.</li>
+	<li>Das Einsperren, Einmauern oder &Auml;hnliches ist verboten.</li>
+	<li>Das Griefen ist bei uns g&auml;nzlich unerw&uuml;nscht.</li>
+	<li>Die Tiere von anderen Mitspielern d&uuml;rfen ohne Erlaubnis des Besitzers weder geschoren, gemolken noch get&ouml;tet werden.</li>
 	<li>Skins mit Rechtsextremistischen oder Pornografischen aussehen sind verboten und sind nach Aufforderung durch ein Teammitglied zu wechseln.</li>
-	<li>Höhere Teammitglieder haben das Recht, euch auch ohne besonderen Grund aus dem Spielgeschehen auszuschließen.</li>
-	<li>Es ist verboten, Bauwerke von anderen Mitspielern ohne deren ausdrückliche einwilligung zu verändern oder gar zu zerstören.</li>
-	<li>Es ist verboten Fallen für andere Mitspieler zu stellen. Mobfallen sind erlaubt, solange sie ersichtlich sind oder durch einen Hinweis davor gewarnt wird.</li>
+	<li>H&ouml;here Teammitglieder haben das Recht, euch auch ohne besonderen Grund aus dem Spielgeschehen auszuschlie&szlig;en.</li>
+	<li>Es ist verboten, Bauwerke von anderen Mitspielern ohne deren ausdr&uuml;ckliche einwilligung zu ver&auml;ndern oder gar zu zerst&ouml;ren.</li>
+	<li>Es ist verboten Fallen f&uuml;r andere Mitspieler zu stellen. Mobfallen sind erlaubt, solange sie ersichtlich sind oder durch einen Hinweis davor gewarnt wird.</li>
 	<li>Das Bauen von Rechtsradikalen Zeichen ist bei uns strengstens verboten.</li>
-	<li>Lebensgefährliche Bauten müssen ausreichend abgesichert sein. Dazu zählen auch Löcher im Boden.</li>
+	<li>Lebensgef&auml;hrliche Bauten m&uuml;ssen ausreichend abgesichert sein. Dazu z&auml;hlen auch L&ouml;cher im Boden.</li>
 	<li><strong>Seid nett zueinander</strong><br />
-		Bitte, Danke, Geduld mit Neulingen. Vorwürfe und Beleidigungen haben hier gar nichts zu suchen.
-		Ärgert euch mal etwas, geht leicht darüber hinweg, denn meist ist es nur ein Missverständnis.
+		Bitte, Danke, Geduld mit Neulingen. Vorw&uuml;rfe und Beleidigungen haben hier gar nichts zu suchen.
+		&Auml;rgert euch mal etwas, geht leicht dar&uuml;ber hinweg, denn meist ist es nur ein Missverst&auml;ndnis.
 	</li>
 </ol>
 <p>Bei einem Versto&szlig; werden je nach schwere der Tat Mahnungen vergeilt und bei Wiederholung der Spieler von der Whitelist des Servers verbannt.</p>
@@ -642,33 +654,43 @@ closeDir($dir);
 </div>
 
 
+<a name="links"></a><br /><br /><br />
+<h1>Links &amp; Partnerseiten</h1>
+<a href="http://gameserver.4players.de" target="_blank" class="Partner"><img src="partner/4players.jpg" /></a>
+<a href="http://www.minecraft.net" target="_blank" class="Partner"><img src="partner/minecraft.jpg" /></a>
+<a href="http://minecraft-de.gamepedia.com" target="_blank" class="Partner"><img src="partner/minecraft-wiki.jpg" /></a>
+<a href="http://www.qlockworks.de" target="_blank" class="Partner"><img src="partner/qlockworks.jpg" /></a>
+<a href="http://www.benjaminhartl.de" target="_blank" class="Partner"><img src="partner/benjaminhartl.jpg" /></a>
+<div style="clear:both"></div>
+
+
 <a name="impressum"></a><br /><br /><br />
 <h1>Impressum</h1>
 
 <p>&nbsp;</p>
 <h3>Anbieter</h3>
-<p>Benjamin Hartl<br> Am Schulberg 10<br />E-Mail: <a href="mailto:info@qlockworks.de">info@qlockworks.de</a></p>
+<p>Benjamin Hartl<br> Am Schulberg 10<br />E-Mail: <a data-mail="info" data-host="qlockworks.de"></a></p>
 <p>&nbsp;</p>
 <h3>Verantwortlich nach &sect; 6 Abs.2 MDStV</h3>
 <p><a href="http://www.benjaminhartl.de/" target="_blank">Benjamin Hartl</a><br>am Schulberg 10<br> 94163 Saldenburg</p>
 <p>&nbsp;</p>
 <h3>Haftungsausschluss</h3>
-<p><strong>Haftung für Inhalte</strong><br />
-Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.<br />
-Als Dienstanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Dienstanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+<p><strong>Haftung f&uuml;r Inhalte</strong><br />
+Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen.<br />
+Als Dienstanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Dienstanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
 </p>
-<p><strong>Haftung für Links</strong><br />
-Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.<br />
-Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige &nbsp;Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+<p><strong>Haftung f&uuml;r Links</strong><br />
+Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen.<br />
+F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
 </p>
 <p><strong>Urheberrecht</strong><br />
 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.<br />
-Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
 </p>
 <p><strong>Datenschutz</strong><br />
-Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.<br />
-Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.<br />
-Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten m&ouml;glich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit m&ouml;glich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdr&uuml;ckliche Zustimmung nicht an Dritte weitergegeben.<br />
+Wir weisen darauf hin, dass die Daten&uuml;bertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitsl&uuml;cken aufweisen kann. Ein l&uuml;ckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht m&ouml;glich.<br />
+Der Nutzung von im Rahmen der Impressumspflicht ver&ouml;ffentlichten Kontaktdaten durch Dritte zur &Uuml;bersendung von nicht ausdr&uuml;cklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdr&uuml;cklich widersprochen. Die Betreiber der Seiten behalten sich ausdr&uuml;cklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
 </p>
 
 </div>
@@ -676,6 +698,17 @@ Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten du
 
 <script>
 scroller.init();
+
+var a = document.getElementsByTagName("a");
+for(var i=0;i<a.length;i++){
+	if(a[i].getAttribute("data-mail")){
+		var mail = a[i].getAttribute("data-mail")+"@"+a[i].getAttribute("data-host");
+		a[i].href = "mailto:"+mail;
+		a[i].innerHTML = mail;
+		a[i].removeAttribute("data-mail");
+		a[i].removeAttribute("data-host");
+	}
+}
 </script>
 </body>
 </html>
