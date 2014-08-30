@@ -110,7 +110,7 @@ if($p->checkPermission()){
 			<tr><td>Vorschaubild</td><td><input type="file" name="image" />'.$img.'</td></tr>
 			<tr><td style="padding-top:10px">Inhalt</td><td></td></tr>
 		</table>
-		<textarea name="html" class="Html" style="height:450px">'.$p->getText().'</textarea>
+		<textarea name="html" class="Html" style="height:450px">'.str_replace("&","&amp;",$p->getText()).'</textarea>
 		<table style="border-top-left-radius:0px;border-top-right-radius:0px">
 			<tr><td>Tags <small>(mehrere mit Komma getrennt)</small></td><td><input type="text" name="tags" value="'.implode(", ",$p->getTags()).'" /></td></tr>
 			<tr><td></td><td><label><input type="checkbox" name="public" value="y"'.($p->getPublic() ? ' CHECKED' : "").' /> &Ouml;ffentlich</label></td></tr>

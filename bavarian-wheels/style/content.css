@@ -1,0 +1,200 @@
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+html,body {
+	font-family: 'Raleway', sans-serif;
+	font-size:13px;
+}
+
+
+html,body,form,table,tr,th,td,ul,ol,li,h1,h2,h3,h4,h5,h6,p,img,hr,input,textarea,select {
+	margin:0px;
+	padding:0px;
+	border:0px;
+	border-spacing:0px;
+}
+
+a {
+	color:#A77;
+	text-decoration:none;
+}
+
+ul, ol {
+	padding:2px 0px 2px 20px;
+}
+li, p {
+	padding:3px 0px;
+}
+
+h1 {
+	font-size:26px;
+	border-bottom:1px solid #A77;
+	margin-bottom:10px;
+}
+h2 {
+	font-size:22px;
+	padding-bottom:8px;
+}
+h3 {
+	font-size:18px;
+	padding-bottom:6px;
+}
+h4 {
+	font-size:16px;
+	padding-bottom:4px;
+}
+h5 {
+	font-size:14px;
+	padding-bottom:2px;
+}
+h6 {
+	font-size:13px;
+	padding-bottom:2px;
+}
+
+input {
+	width:80%;
+	padding:3px 5px;
+	border:1px solid #CCC;
+	border-radius:3px;
+	background-color:white;
+	margin-right:5px;
+}
+input[type=submit] {
+	width:auto;
+	padding:3px 10px;
+	background-image: linear-gradient(#EEE 0%, #DDD 100%);
+	cursor:pointer;
+}
+
+.Clear {
+	clear:both;
+}
+
+#background {
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	z-index:-1;
+}
+
+.Wrapper {
+	width:1000px;
+	margin:0px auto;
+	box-shadow:#444 -2px 0px 4px, #444 2px 0px 4px;
+	background-color:rgba(255,255,255,0.9);
+}
+
+.Header {
+	position:relative;
+	height:400px;
+	background:url(header.jpg);
+}
+.Header .Logo {
+	position:absolute;
+	top:20px;
+	left:170px;
+	color:white;
+	font-size:34px;
+	font-weight:bold;
+	font-style:italic;
+	letter-spacing:2px;
+}
+
+.Navigation {
+	position:relative;
+	padding-left:30px;
+	border-top:3px solid black;
+	border-bottom:3px solid black;
+	background-color:#333;
+}
+.Navigation a {
+	margin-bottom:-3px;
+	padding:8px 20px;
+	border-bottom:3px solid black;
+	color:white;
+	font-size:16px;
+	display:block;
+	float:left;
+}
+.Navigation a:hover {
+	border-bottom-color:orange;
+}
+.Navigation form {
+	position:absolute;
+	top:5px;
+	right:10px;
+}
+.Navigation form input[type=search] {
+	width:300px;
+}
+
+.Content {
+	width:580px;
+	padding:30px;
+	float:left;
+}
+.Sidebar {
+	width:300px;
+	padding:30px;
+	float:left;
+}
+
+.Footer {
+	position:relative;
+	background-color:#222;
+	color:#CCC;
+	padding:20px 30px;
+}
+.Footer a {
+	color:#EEE;
+}
+.Footer a:hover {
+	color:white;
+}
+.Footer .FooterCol {
+	float:left;
+	padding-right:80px;
+}
+.Footer .Top {
+	position:absolute;
+	top:20px;
+	right:30px;
+}
+
+
+.Pagenav {
+	padding-top:20px;
+}
+.Pagenav a, .Pagenav b {
+	padding:5px 10px;
+	border-radius:12px;
+	background-color:#CCC;
+	margin-right:10px;
+	display:block;
+	float:left;
+}
+
+.Entry {
+	margin-top:30px;
+}
+.Entry .EntryHeadline {
+	font-size:16px;
+	border-bottom:1px solid #DDD;
+}
+.Entry .EntryContent {
+	padding:8px 0px;
+}
+.Entry .EntryFooter {
+	background-color:#DDD;
+	padding:5px 10px;
+	border-radius:3px;
+}
+
+
+.Tagcloud {
+	word-spacing:10px;
+}
+.Tagcloud a {
+	word-spacing:0px;
+}

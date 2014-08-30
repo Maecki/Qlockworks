@@ -11,7 +11,7 @@ final class QwUtils {
 		if(preg_match("/html/",$key)){
 			$val = str_replace("'","&#039;",$val);
 		}else{
-			$val = htmlentities($val,ENT_QUOTES);
+			$val = htmlentities($val,ENT_QUOTES,"utf-8");
 		}
 		$val = stripslashes($val);
 		return $val;
